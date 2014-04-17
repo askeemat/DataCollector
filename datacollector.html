@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>auto downloader</title>
+<script type="text/javascript">
+function download(url,filename) {
+    var elem = document.createElement("a");
+    elem.download = filename;
+    elem.href = url;
+    elem.click();
+}
+
+function onClickDownload() {
+    var txtFileList = document.getElementById("txtFileList");
+    var val = txtFileList.value;
+    var arr = val.split("\n");
+    for (i = 0; i < arr.length; i++) {
+        if (arr[i] != "") {
+            download(arr[i], "out" + i + ".pdf");
+        }
+    }
+}
+</script>
+</head>
+<body>
+<textarea id="txtFileList" cols="100" rows="10"></textarea><br>
+<input type="button" value="Download" onclick="onClickDownload()">
+<div id="disp"></div>
+</body>
+</html>
